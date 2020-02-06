@@ -1,0 +1,11 @@
+﻿<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	<ul class="nav navbar-nav nav-tabs">
+		<li ng-repeat="mode in modes"
+			ui-sref-active="{{mode.State}}">
+			<a ui-sref="{{mode.State}}">
+				{{mode.Label}}
+			</a>
+		</li>
+	</ul>
+</div>
+<div ui-view="examinePane"></div>

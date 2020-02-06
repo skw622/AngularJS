@@ -1,0 +1,66 @@
+﻿<div class="row site-body">
+    <div class="col-md-12">
+        <h2 class="sub-header">Register</h2>
+        <div class="well">
+            <p>Create an account to access your device's data, manage your device, and receive support.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <form ng-submit="register()" class="form-horizontal" focus-first-field>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputEmail">Email Address</label>
+                        <div class="col-xs-6">
+                            <input id="inputEmail" class="form-control" ng-model="newUser.Email" placeholder="for username, notifications, and correspondence" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputPassword1">Password</label>
+                        <div class="col-xs-6">
+                            <input id="inputPassword1" class="form-control" type="password" ng-model="newUser.Password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputPassword2">Confirm Password</label>
+                        <div class="col-xs-6">
+                            <input id="inputPassword2" class="form-control" type="password" ng-model="newUser.ConfirmPassword" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputFirstName">First Name</label>
+                        <div class="col-xs-6">
+                            <input id="inputFirstName" class="form-control" ng-model="newUser.FirstName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputLastName">Last Name</label>
+                        <div class="col-xs-6">
+                            <input id="inputLastName" class="form-control" ng-model="newUser.LastName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputOrganization">Organization</label>
+                        <div class="col-xs-6">
+                            <input id="inputOrganization" class="form-control" ng-model="newUser.Organization" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputPhoneNumber">Phone Number</label>
+                        <div class="col-xs-6">
+                            <input id="inputPhoneNumber" class="form-control" ng-model="newUser.PhoneNumber" placeholder="555-555-5555" />
+                        </div>
+                    </div>
+					<label>
+						<input type="checkbox" ng-model="newUser.Agreement" > I have read and agree to the <a ui-sref="terms">terms of use</a>.  I do so as an authorized agent of my organization, or I am agreeing as an individual.
+					</label>
+                    <div class="row"><input class="btn btn-primary margin-top-5" type="submit" value="Register" /></div>
+                </form>
+            </div>
+            <div class="col-md-4" ng-show="errorMessages">
+                <div class="row alert alert-danger margin-top-5" ng-repeat="message in errorMessages">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    {{message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

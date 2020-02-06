@@ -1,0 +1,61 @@
+﻿<div class="site-body">
+    <h1 class="sub-header">Provision Information</h1>
+
+    <div class="row">
+        <div class="col-xs-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Latitude:</h3>
+				</div>
+				<div class="panel-body">
+					{{provisioning.Latitude}}
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Longitude:</h3>
+				</div>
+				<div class="panel-body">
+					{{provisioning.Longitude}}
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Altitude:</h3>
+				</div>
+				<div class="panel-body">
+					{{provisioning.Altitude}}
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Height:</h3>
+				</div>
+				<div class="panel-body">
+					{{provisioning.Height}}
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Location:</h3>
+				</div>
+				<div class="panel-body">
+					{{provisioning.Location}}
+				</div>
+			</div>
+			<button class="btn btn-default" ng-click="unprovisionInitiated = !unprovisionInitiated">Unprovision</button>
+			<button ng-show="unprovisionInitiated" class="btn btn-danger" ng-click="unprovision()">I'm Sure</button>
+			<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw margin-bottom" ng-show="unprovisioning"></i>
+			<div class="row alert alert-danger margin-top-5" ng-show="message">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				{{message}}
+			</div>
+        </div>
+        <div class="col-xs-9">
+			<ui-gmap-google-map center="map.center" zoom="map.zoom">
+				<ui-gmap-marker coords="map.center" idKey="1" options="map.options">
+				</ui-gmap-marker>
+			</ui-gmap-google-map>
+        </div>
+    </div>
+</div>

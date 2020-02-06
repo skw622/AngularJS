@@ -1,0 +1,37 @@
+﻿<div class="row site-body">
+    <div class="col-md-12">
+        <h2 class="sub-header">Devices</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Device ID</th>
+                        <th>Model</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in deviceList">
+                        <td><a ui-sref="device.manage({ deviceId: item.Id })">{{item.Id}}</a></td>
+                        <td>{{item.ProductModelId}}</td>
+                        <td>{{item.Location}}</td>
+                        <td>{{item.StatusCode}}</td>
+                        <td>{{item.StatusMessage}}</td>
+                        <td>
+                            <div class="btn btn-danger icon-camera" ui-sref="device.manage({ deviceId: item.Id })">
+                                <span class="glyphicon glyphicon-zoom-in"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-show="deviceList && !deviceList.length" class="row"><div class="alert alert-info" role="alert"><strong>No devices.</strong>  <a ui-sref="devices.provision" class="alert-link">Provision</a> or <a href="http://pollensense.com" class="alert-link">purchase</a> a device. </div></div>
+            <div ng-hide="deviceList" class="row"><div class="col-md-1 col-md-offset-4"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i></div></div>
+        </div>
+    </div>
+
+    <div ui-view="provision"></div>
+</div>

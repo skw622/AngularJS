@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="/Assets/Bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="/Assets/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="/Assets/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Assets/font-awesome/font-awesome.css" rel="stylesheet" />
+    <link href="/Assets/ng-chart/angular-chart.css" rel="stylesheet" />
+    <link href="/Assets/styles/styles.css" rel="stylesheet" />
+    <link href="/Assets/ui-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
+
+    <!--<script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;)s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "0f73a436-fc36-43cd-b8f5-7bfd40158eff"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>-->
+</head>
+<body>
+
+
+    <nav class="navbar navbar-inverse navbar-static-top navbar-nomargin">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://pollensense.com">Pollen Sense <br /><small>Automated Pollen Imaging</small></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-hide="loggedIn" ui-sref-active="subscriptions">
+                        <a ui-sref="subscriptions">Subscriptions</a>
+                    </li>
+                    <li ng-hide="loggedIn" ui-sref-active="preview">
+                        <a ui-sref="preview">Network</a>
+                    </li>
+                    <li ng-show="loggedIn" ui-sref-active="devices.list">
+                        <a ui-sref="devices.list">Devices</a>
+                    </li>
+                    <li ng-show="loggedIn" ui-sref-active="notifications">
+                        <a ui-sref="notifications">Notifications <span class="badge">{{notificationCount}}</span></a>
+                    </li>
+                    <li ng-show="loggedIn">
+                        <a ui-sref="support">Support</a>
+                    </li>
+                    <li class="dropdown" dropdown on-toggle="toggled(open)" ng-show="loggedIn && roles.hasOwnProperty('Admin')">
+                        <a href="#" class="dropdown-toggle" dropdown-toggle>Administration <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a ui-sref="adminDevices">Devices</a>
+                            </li>
+                            <li>
+                                <a ui-sref="categories">Categories</a>
+                            </li>
+                            <li>
+                                <a ui-sref="adminAccounts">Accounts</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" dropdown on-toggle="toggled(open)" ng-show="loggedIn">
+                        <a href="#" class="dropdown-toggle" dropdown-toggle>({{userName}}) <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="" ng-click="logOut('subscriptions')">Sign Out</a>
+                            </li>
+                            <li>
+                                <a ui-sref="account">Manage Account</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-hide="loggedIn">
+                        <a ui-sref="signin">Sign In or Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div ui-view>
+        </div>
+    </div>
+
+    <div class="row site-footer">
+        <div class="col-md-10 col-md-offset-1">
+            <footer>
+                <div class="text-left">
+                    © 2019 Pollen Sense
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+    <script src="/Assets/lodash/lodash.js"></script>
+    <script src="/Assets/ng/angular.js"></script>
+    <script src="/Assets/ng/angular-cookies.js"></script>
+    <script src="/Assets/ng/angular-resource.js"></script>
+    <script src="/Assets/ng/angular-simple-logger.light.js"></script>
+    <script src="/Assets/ng/ng-map.js"></script>
+    <script src="/Assets/ui-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/Assets/ui-router/angular-ui-router.js"></script>
+    <script src="/Assets/ng-checklist/checklist-model.js"></script>
+    <script src="/Assets/focus/angular-focus-first-field.js"></script>
+    <script src="/Assets/chart/Chart.js"></script>
+    <script src="/Assets/ng-chart/angular-chart.js"></script>
+
+    <script src="/Assets/app/app.js"></script>
+    <script src="/Assets/app/utcToLocal.js"></script>
+    <script src="/Assets/app/controllers/accountCtrl.js"></script>
+    <script src="/Assets/app/controllers/adminAccountsCtrl.js"></script>
+    <script src="/Assets/app/controllers/adminDevicesCtrl.js"></script>
+    <script src="/Assets/app/controllers/analyzeCtrl.js"></script>
+    <script src="/Assets/app/controllers/categoriesCtrl.js"></script>
+    <script src="/Assets/app/controllers/categoryCtrl.js"></script>
+    <script src="/Assets/app/controllers/deviceAnalyzeCtrl.js"></script>
+    <script src="/Assets/app/controllers/deviceCtrl.js"></script>
+    <script src="/Assets/app/controllers/deviceExamineCtrl.js"></script>
+    <script src="/Assets/app/controllers/deviceManageCtrl.js"></script>
+    <script src="/Assets/app/controllers/deviceProvisionCtrl.js"></script>
+    <script src="/Assets/app/controllers/devicesCtrl.js"></script>
+    <script src="/Assets/app/controllers/examineBrowseCtrl.js"></script>
+    <script src="/Assets/app/controllers/examineQueryCtrl.js"></script>
+    <script src="/Assets/app/controllers/frameDetailCtrl.js"></script>
+    <script src="/Assets/app/controllers/previewCtrl.js"></script>
+    <script src="/Assets/app/controllers/previewMapCtrl.js"></script>
+    <script src="/Assets/app/controllers/provisionCtrl.js"></script>
+    <script src="/Assets/app/controllers/provisionImagesCtrl.js"></script>
+    <script src="/Assets/app/controllers/registerCtrl.js"></script>
+    <script src="/Assets/app/controllers/signInCtrl.js"></script>
+    <script src="/Assets/app/controllers/subscriptionsCtrl.js"></script>
+
+    <script src="/Assets/jquery/jquery.min.js"></script>
+
+    <script src="/Assets/Bootstrap/js/bootstrap.js"></script>
+
+
+</body>
+</html>

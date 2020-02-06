@@ -1,0 +1,14 @@
+﻿<div class="row">
+	<div class="col-sm-1 sidebar" id="nav-horizontal-bar">
+		<ul class="nav nav-sidebar">
+			<li class="nav-sidebar" ui-sref-active="device.manage" id="horizontal-list"><a ui-sref="device.manage"><i class="fa fa-tachometer fa-3x"></i><br />Manage</a></li>
+			<li class="nav-sidebar" ui-sref-active="device.examine.browse.unselected" id="horizontal-list"><a ui-sref="device.examine.browse.unselected"><i class="glyphicon glyphicon-eye-open fa-3x"></i><br />Examine</a></li>
+			<li class="nav-sidebar" ui-sref-active="device.analyze" id="horizontal-list"><a ui-sref="device.analyze"><i class="fa fa-bar-chart fa-3x"></i><br />Analyze</a></li>
+			<li class="nav-sidebar" ui-sref-active="device.provision" id="horizontal-list"><a ui-sref="device.provision"><i class="fa fa-map-marker fa-3x"></i><br />Provision</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-11 col-xs-12 site-body">
+		<div ui-view="deviceDashboard" />
+	</div>
+</div>

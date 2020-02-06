@@ -1,0 +1,38 @@
+﻿<div class="row site-body">
+    <div class="col-md-12">
+        <h2 class="sub-header">Devices</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Organization</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in accountList">
+                        <td>{{item.Username}}</td>
+                        <td>{{item.Email}}</td>
+                        <td>{{item.FirstName}}</td>
+                        <td>{{item.LastName}}</td>
+                        <td>{{item.Organization}}</td>
+                        <td>{{item.PhoneNumber}}</td>
+                        <td>
+                            <div class="btn btn-success icon-camera" ng-click="doSomething(item.UserName)">
+                                Do Something
+                            </div>
+                            <div class="btn btn-danger icon-camera" ui-sref="details/{{item.UserName}}">
+                                <span class="glyphicon glyphicon-zoom-in"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-hide="accountList" class="row"><div class="col-md-1 col-md-offset-4"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i></div></div>
+        </div>
+    </div>
+</div>

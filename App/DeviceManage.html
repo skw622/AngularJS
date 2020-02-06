@@ -1,0 +1,63 @@
+﻿<div class="site-body">
+    <h1 class="sub-header">Manage</h1>
+	<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw margin-bottom" ng-show="communicating"></i>
+
+    <div class="row">
+        <div class="col-xs-7">
+
+			<div class="row alert alert-danger margin-top-5" ng-show="message">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				{{message}}
+			</div>
+
+			<label>Current Mode:</label>
+            <div class="input-group">
+                <input class="form-control" ng-model="state.modeText" disabled />
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Set Mode <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li ng-repeat="mode in possibleModes">
+                            <a ng-click="setMode(mode.code)">{{mode.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <label>Last Status:</label>
+            <div class="row">
+                <div class="col-xs-5"><input class="form-control" ng-model="statusTexts[state.StatusHistory[0].Status]" disabled /></div>
+                <div class="col-xs-2"><label>Received:</label></div>
+                <div class="col-xs-5"><input class="form-control" ng-model="state.StatusHistory[0].At | utcToLocal:'short'" disabled /></div>
+            </div>
+
+			<label>Message:</label>
+			<textarea class="form-control" rows="3" ng-model="state.StatusHistory[0].Message" disabled ></textarea>
+        </div>
+
+        <div class="col-xs-5">
+            <div class="row">
+                <form class="form-inline">
+                    <div class="col-xs-5"><h4>Log</h4></div>
+                </form>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>At</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="entry in state.StatusHistory">
+						<td>{{entry.At | utcToLocal:'short'}}</td>
+                        <td>{{statusTexts[entry.Status]}}</td>
+                        <td>{{entry.Message}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

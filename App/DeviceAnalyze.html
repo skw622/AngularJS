@@ -1,0 +1,96 @@
+﻿<div class="navbar navbar-nomargin">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">Analyze</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav nav-tabs">
+				<li ng-repeat="(periodId, period) in periods"
+					ng-class="{active: period == selectedPeriod}">
+					<a ui-sref=".({period: periodId})">
+						{{period.label}}
+						<span class="sr-only" ng-show="period == selectedPeriod">(current)</span>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav" role="separator"><li>&nbsp;&nbsp;&nbsp;&nbsp;</li></ul>
+
+			<ul class="nav navbar-nav nav-tabs">
+				<li ng-repeat="(modeId, mode) in modes"
+					ng-class="{ active: selectedMode == mode }">
+					<a ui-sref=".({mode: modeId})">
+						{{mode.title}}
+						<span ng-show="selectedMode == mode" class="sr-only">(current)</span>
+					</a>
+				</li>
+			</ul>
+
+			<nav class="nav navbar-nav nav-textbox">
+				<form class="form-inline">
+					<input class="form-control" type="datetime-local" placeholder="Ending time" ng-model="ending">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="navigateTo(ending)"><i class="fa fa-arrow-circle-right"></i></button>
+				</form>
+			</nav>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-click="filterVisible = !filterVisible"><a>Filter</a></li>
+				<li ng-click="export()"><a>Export...</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-sm-2" ng-show="filterVisible">
+		<div class="well well-sm">
+			<h4>Filter: </h4>
+			<div ng-repeat="category in data.Categories">
+				<label>
+					<input type="checkbox" checklist-model="filter.categories" checklist-value="category.CategoryCode"> {{category.CategoryDescription}}
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div ng-class="{ 'col-sm-10': filterVisible, 'col-sm-12': !filterVisible }">
+		<div class="row alert alert-danger margin-top-5" ng-show="message">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			{{message}}
+		</div>
+		
+		<div ng-show="selectedMode == modes['chart']">
+			<h3 ng-show="rawData.Categories.length === 0">No data for this period</h3>
+			<h3 ng-show="rawData.Categories.length > 0 && data.Data.length === 0">Data present, but filtered</h3>
+			<canvas ng-show="data.Data.length > 0" id="line" class="chart chart-line" chart-data="data.Data"
+					chart-labels="data.Labels" chart-legend="true" chart-series="data.Series"></canvas>
+		</div>
+		
+		<table class="table table-striped" ng-show="selectedMode == modes['table']">
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Date/time</th>
+					<th>PPM<sup>3</sup></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="dataPoint in tableData">
+					<td>{{dataPoint.Description}}</td>
+					<td>{{dataPoint.DateTime}}</td>
+					<td>{{dataPoint.PPM3}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

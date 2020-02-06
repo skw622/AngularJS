@@ -1,0 +1,74 @@
+﻿<div class="row site-body">
+	<div class="col-sm-12">
+		<div class="row">
+			<div class="col-sm-5">
+				<h2 class="sub-header">Categories</h2>
+			</div>
+			<div class="col-sm-5">
+				Filter: <input class="form-control" ng-model="filterText" />
+			</div>
+			<div class="col-sm-2">
+				<div class="btn btn-success" ng-click="addCategory()" ng-hide="newCategory">
+					<span class="glyphicon glyphicon-plus"></span> Add
+				</div>
+			</div>
+		</div>
+		<div ng-hide="categoryList || !saving" class="row"><div class="col-md-1 col-md-offset-4"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i></div></div>
+		<div class="well" ng-show="newCategory">
+			<form name="newCategoryForm" ng-submit="saveCategory()">
+				<label>Code:</label>
+				<input class="form-control" ng-model="newCategory.Code" ng-required="true" />
+
+				<label>Description:</label>
+				<input class="form-control" ng-model="newCategory.Description" ng-required="true" />
+
+				<label>Type:</label>
+				<div class="input-group" style="max-width:350px;">
+					<input class="form-control" ng-model="newCategory.TypeDescription" disabled />
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-default dropdown-toggle" ng-click="loadTypes()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Set Type <span class="caret"></span></button>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li ng-repeat="type in types">
+								<a ng-click="setType(type)">{{type.Description}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<label>Size - minimum (um):</label>
+				<input class="form-control" ng-model="newCategory.SizeMin" />
+
+				<label>Size - maximum major (um):</label>
+				<input class="form-control" ng-model="newCategory.SizeMaxMajor" />
+
+				<label>Size - maximum minor (um):</label>
+				<input class="form-control" ng-model="newCategory.SizeMin" />
+
+				<input class="btn btn-primary margin-top-5" type="submit" value="Save" enabled="{{newCategoryForm.input.$error}}" />
+			</form>
+			<div class="row alert alert-danger margin-top-5" ng-show="message">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				{{message}}
+			</div>
+		</div>
+		<div style="overflow-y:scroll; height:600px;" class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Descripton</th>
+						<th>Type</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in categoryList | filter : filterText">
+						<td><a ui-sref="category({ code: item.Code })">{{item.Code}}</a></td>
+						<td>{{item.Description}}</td>
+						<td>{{item.TypeDescription}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div ng-show="categoryList && !categoryList.length" class="row"><div class="alert alert-info" role="alert"><strong>No categories.</strong>  </div></div>
+		</div>
+	</div>
+</div>

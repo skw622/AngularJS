@@ -1,0 +1,259 @@
+﻿a {
+    cursor:pointer;
+}
+
+.site-header {
+    /*color: #F2EFDC;*/
+    padding: 10px;
+}
+
+.user-status a a:visited {
+    color: orangered;
+}
+
+.user-status a:active a:hover {
+    color: red;
+}
+
+.site-status {
+    margin-top: 10px;
+    /*color: white;*/
+}
+
+.site-footer {
+    background-color: #808080;
+    color: #F0F0F0;
+}
+
+.site-footer footer {
+    margin: 10px;   
+}
+
+.site-body {
+    color: #404040;
+    padding: 10px;
+}
+
+.site-username-status {
+    list-style-type: none;
+    display: inline;
+}
+
+.site-login {
+    
+}
+
+.home-consumer {
+    /*background-color: #888888;*/
+}
+
+.home-contractor {
+    /*background-color:#888666;*/
+}
+
+.dashboard-btn {
+    margin-top: 15px;
+}
+
+.thumbnail_max_size {
+    max-height: 100px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+
+
+.margin-top-5 {
+    margin-top:5px;
+}
+.margin-left-5 {
+    margin-left: 5px;
+}
+.margin-right-5 {
+    margin-right: 5px;
+}
+.margin-5 {
+    margin: 5px;
+}
+
+.session-alert {
+    width:100%;
+    margin-top: 5px;
+}
+.session-alert-btn-wrapper {
+    padding: 10px;
+}
+
+.navbar-brand {
+  line-height:12px;
+  padding-top:20px;
+  padding-bottom:5px;
+}
+
+.navbar-brand small {
+  display:block;
+  font-size:10px;
+}
+
+.navbar-nomargin {
+    margin-bottom: 0;
+}
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+	/* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
+.form-horizontal .control-label{
+    padding-top: 7px;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+	position: static;
+	top: 51px;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: block;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	background-color: #f5f5f5;
+	border-right: 1px solid #eee;
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+.angular-google-map-container { height: 400px; }
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-container img {
+  position: absolute;
+}
+
+.navbar .divider-vertical {
+    height: 50px;
+    margin: 0 9px;
+    border-right: 1px solid #ffffff;
+    border-left: 1px solid #f2f2f2;
+}
+
+.navbar-inverse .divider-vertical {
+    border-right-color: #222222;
+    border-left-color: #111111;
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse .nav > .divider-vertical {
+        display: none;
+     }
+     #nav-horizontal-bar {
+        width: 100%;
+        height: 75px;
+        padding: 0;
+    }
+     #horizontal-list {
+         float: left;
+         padding-left: 40px;
+         margin-bottom: -20px;
+     }
+}
+
+.table > .active > a,
+.table > .active > a:hover,
+.table > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+[ui-sref] {
+    cursor: pointer;
+}
+
+.progress {
+	background-image: -webkit-linear-gradient(top, #808080 0%, #B2B2B2 100%);
+	background-image: linear-gradient(to bottom, #808080 0%, #B2B2B2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff808080', endColorstr='#ffb2b2b2', GradientType=0);
+	background-repeat: repeat-x;
+	margin-bottom: 0;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.hover-btn {
+    position: relative;
+    right: 2px;
+    display: none;
+}
+
+tr:hover .hover-btn {
+    display: block;
+}
+
+.nav-textbox {
+	margin-top: 0.5em
+}
+
+.up-down-frame-button {
+	margin-left: 6em;
+	margin-right: 6em;
+}
+
+.navigate-input {
+	padding: 2px 4px;
+	width: 12em !important;
+}
+
+.blob-box:focus {
+	background: #f6f6f6;
+	outline: 0px solid tranparent;
+}
+
+.hover-visible {
+	display: none;
+}
+
+div.blob-box:hover .hover-visible, div.blob-box:focus .hover-visible, .hover.visible:focus {
+	display:block;
+}

@@ -1,0 +1,76 @@
+﻿<div class="col-md-12">
+    <h2 class="sub-header">Provision Device</h2>
+	<div class="well">
+		<p>Provisioning a device allows it to be controlled and enabled.  For reasons similar to a weather reporting instrument, detailed location information for this device is important.  If the device is relocated, please unprovision and reprovision it for the new location. </p>
+	</div>
+    <div class="row">
+        <div class="col-md-8">
+            <form class="form-horizontal" ng-submit="save()" focus-first-field>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputDeviceID">Device ID</label>
+                    <div class="col-xs-10">
+                        <input id="inputDeviceID" class="form-control" ng-model="newProvision.DeviceID" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputLatitude">Latitude</label>
+                    <div class="col-xs-10">
+                        <input id="inputLatitude" class="form-control" ng-model="newProvision.Latitude" placeholder="(x.x)" />
+                    </div>
+                    <p>Please use the precise location, <b>we will mask (through randomization) your location to public data consumers.</b> </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputLongitude">Longitude</label>
+                    <div class="col-xs-10">
+                        <input id="inputLongitude" class="form-control" ng-model="newProvision.Longitude" placeholder="(x.x)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputAltitude">Altitude</label>
+                    <div class="col-xs-10">
+                        <input id="inputAltitude" class="form-control" ng-model="newProvision.Altitude" placeholder="(meters above sea level)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputHeight">Height</label>
+                    <div class="col-xs-10">
+                        <input id="inputHeight" class="form-control" ng-model="newProvision.Height" placeholder="(above ground - meters)" />
+                    </div>
+                </div>
+                <p>For location </p>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputLocation">Location</label>
+                    <div class="col-xs-10">
+                        <input id="inputLocation" class="form-control" ng-model="newProvision.Location" placeholder="(AAA Allergist or Country, State, County, City, Neighborhood)" />
+                    </div>
+                    <p>This is a friendly name for the device.  We reserve the right to correct or change this in the event of errors or in order to be consistent and professional. </p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputURL">URL</label>
+                    <div class="col-xs-10">
+                        <input id="inputURL" class="form-control" ng-model="newProvision.URL" placeholder="Your Website URL" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="inputPublicDescription">Public Description</label>
+                    <div class="col-xs-10">
+                        <input id="inputPublicDescription" class="form-control" ng-model="newProvision.PublicDescription" placeholder="(AAA Allergist)" />
+                    </div>
+                    <p>This will be shown in the app to users E.G. This data is brought to you by AAA Allergist</p>
+
+                </div>
+                <div class="col-xs-offset-2"><input class="btn btn-primary margin-top-5" type="submit" value="Provision" /></div>
+            </form>
+            <div class="row">
+                <div class="row alert alert-danger margin-top-5" ng-show="message">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    {{message}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 well">
+            <span class="glyphicon glyphicon-phone fa-3x" aria-hidden="true"></span>
+            <p>We recommend that you provision this device from your smart phone with location services enabled.  We can use your device's GPS receiver to retrieve the location of your device and to take optional images of the location.</p>
+        </div>
+    </div>
+</div>

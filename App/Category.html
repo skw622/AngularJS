@@ -1,0 +1,91 @@
+﻿<div class="site-body">
+    <h1 class="sub-header">Manage</h1>
+	<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw margin-bottom" ng-hide="category"></i>
+
+    <div class="row">
+        <div class="col-xs-4">
+
+			<div class="row alert alert-danger margin-top-5" ng-show="message">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				{{message}}
+			</div>
+
+			<label>Code:</label>
+            <input class="form-control" ng-model="category.Code" disabled />
+
+            <label>Description:</label>
+			<input class="form-control" ng-model="category.Description" />
+
+			<label>Type:</label>
+			<div class="input-group">
+				<input class="form-control" ng-model="category.TypeDescription" disabled />
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="loadTypes()">Set Type <span class="caret"></span></button>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li ng-repeat="type in types">
+							<a ng-click="setType(type)">{{type.Description}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<label>Effective as of:</label>
+			<input class="form-control" ng-model="category.Effective" />
+
+			<div class="btn btn-primary" ng-click="saveChanges()" ng-show="dirty">
+				<span class="glyphicon glyphicon-ok"></span> Save
+			</div>
+
+			<div style="overflow-y:scroll; height:350px;">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Region</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="segment in category.Segments" ng-click="selectSegment(segment)" ng-class="{ active: selected == segment }">
+							<td>{{segment.Region.SpecificName}}</td>
+							<td>{{segment.Region.GeneralName}}</td>
+							<td>
+								<div class="btn btn-danger btn-xs hover-btn" ng-click="removeSegment(segment)">
+									<span class="glyphicon glyphicon-remove"></span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="btn btn-success" ng-click="addSegment()" ng-hide="newSegment">
+				<span class="glyphicon glyphicon-plus"></span> Add
+			</div>
+			<form ng-show="newSegment" ng-submit="saveSegment()">
+				<label>Region:</label>
+				<input class="form-control" ng-model="newSegment.RegionSpecificName"
+					typeahead-on-select="regionSelected($item)" typeahead="region.SpecificName for region in regions | filter:$viewValue" 
+					typeahead-loading="!regions" typeahead-editable="false" typeahead-select-on-blur="true" ng- />
+
+				<input class="btn btn-primary margin-top-5" type="submit" value="Save" />
+			</form>
+        </div>
+
+        <div class="col-xs-8">
+            
+			<ui-gmap-google-map center="map.center" pan="true" zoom="4">
+				<ui-gmap-polygon static="true"
+								 fit="true"
+								 editable="false"
+								 draggable="false"
+								 path="selected.Region.Geography"
+								 stroke="{color: '#6060FB',weight: 2}"
+								 fill="{color: '#ff0000',opacity: 0.4}">
+				</ui-gmap-polygon>
+			</ui-gmap-google-map>
+
+			<canvas id="line" class="chart chart-line" chart-data="factors.Data"
+					chart-labels="factors.Labels" chart-series="factors.Series" chart-legend="false" height="80"></canvas>
+        </div>
+    </div>
+</div>

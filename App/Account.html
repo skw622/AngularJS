@@ -1,0 +1,57 @@
+﻿<h2 class="sub-header">Account</h2>
+<div class="row">
+	<div ng-hide="account && !processing" class="row"><div class="col-md-1 col-md-offset-4"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i></div></div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label class="control-label col-xs-2" for="emailAddress">Email Address</label>
+			<div class="col-xs-4">
+				<input id="emailAddress" class="form-control" ng-model="account.Email" readonly />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div>
+			<button ng-hide="passChange" type="button" class="btn btn-primary margin-top-5" ng-click="passChange = { }">Change Password</button>
+		</div>
+		<div ng-show="passChange" class="margin-top-5">
+			<form class="form-horizontal" ng-submit="changePass()" focus-first-field>
+				<div class="form-group">
+					<div class="form-group">
+						<label class="control-label col-xs-2" for="inputPassword1">Old Password</label>
+						<div class="col-xs-4">
+							<input id="inputPassword1" class="form-control" type="password" ng-model="passChange.OldPassword" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-2" for="inputPassword2">New Password</label>
+						<div class="col-xs-4">
+							<input id="inputPassword2" class="form-control" type="password" ng-model="passChange.NewPassword" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-2" for="inputPassword3">Confirm Password</label>
+						<div class="col-xs-4">
+							<input id="inputPassword3" class="form-control" type="password" ng-model="passChange.ConfirmPassword" />
+						</div>
+					</div>
+				</div>
+				<input class="btn btn-primary margin-top-5" type="submit" value="Submit" />
+			</form>
+		</div>
+		<div class="row">
+			<div class="row alert alert-danger margin-top-5" ng-show="errorMessages">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				{{errorMessages}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="row alert alert-success margin-top-5" ng-show="result">
+				{{result}}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row margin-top-5">
+</div>

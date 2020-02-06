@@ -1,0 +1,28 @@
+﻿<div class="row">
+	<div class="col-xs-3">
+		<form >
+			@*<label>Starting: </label><br/>
+			<input type="datetime-local" ng-model="query.starting" />
+
+			<label>Ending: </label><br />
+			<input type="datetime-local" ng-model="query.ending" />*@
+
+			<label>Query: </label><br />
+			<textarea class="form-control" rows="15" ng-model="query"></textarea>
+		</form>
+
+		<button class="btn-primary" ng-click="getResults()">Execute</button>
+		<a ng-href="{{ getDownloadUrl() }}" download="images.zip" target="_blank">
+			Download
+		</a>
+	</div>
+	<div class="col-xs-9" ng-repeat="blob in blobs">
+		<div class="thumbnail blob-box">
+			<div class="image-container">
+				<a ui-sref="device.examine.frame({ frameId: blob.FrameId })">
+					<img ng-src="{{ getImageUrl(blob) }}" class="img-responsive" spriteimage>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

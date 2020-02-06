@@ -1,0 +1,34 @@
+﻿<div class="row site-body">
+    <div class="col-md-6">
+        <h3>Sign In</h3>
+        <form ng-submit="signIn()" focus-first-field>
+
+            <div class="row">
+                <div class="alert alert-success" ng-show="message == 'ended'"><h4>Due to inactivity, you were logged out automatically.</h4></div>
+            </div>
+            <div class="row">
+                <div class="input-group margin-top-5">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input class="form-control" type="text" ng-model="userName" placeholder="e-mail or user name" />
+                </div>
+            </div>
+            <div class="row"><input class="form-control margin-top-5" type="password" ng-model="password" placeholder="Password" /></div>
+            <div class="row"><input class="btn btn-primary margin-top-5" type="submit" value="Sign In" /></div>
+        </form>
+
+		<div ng-show="communicating" class="row"><div class="col-md-1 col-md-offset-4"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i></div></div>
+
+        <div class="row">
+            <div class="row alert alert-danger margin-top-5" ng-show="message">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{message}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h3>New Customer</h3>
+        <p>If you have purchased a device, create an account in order to access data, support, and other benefits. </p>
+        <a class="btn btn-primary" ui-sref="register" role="button">Register</a> 
+    </div>
+</div>

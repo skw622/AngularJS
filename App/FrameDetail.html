@@ -1,0 +1,64 @@
+﻿<div class="row">
+	<div class="col-sm-12">
+		<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw margin-bottom" ng-show="communicating || !categories"></i>
+		<span class="label label-default">Frame ID: {{frame.FrameId}}</span>
+		<span class="label label-default">Imaged at: {{frame.CollectedAt | utcToLocal:'medium'}}</span>
+		<span class="label label-primary" ng-repeat="condition in frame.Conditions">
+			{{condition.Description}}: {{condition.Value}} {{condition.Unit}}
+		</span>
+		<div class="row alert alert-danger margin-top-5" ng-show="message">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			{{message}}
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-if="frame">
+	<div class="col-sm-12">
+		<img ng-src="{{getRawFrameUrl()}}" style="width:100%;" />
+	</div>
+</div>
+
+<div class="row" ng-if="frame">
+	<div class="col-sm-4" ng-repeat="blob in frame.Blobs">
+		<div class="thumbnail blob-box" tabindex="0">
+			<span class="label label-default">Blob# {{blob.BlobIndex}}</span>
+			<span class="label label-primary">Size: {{((blob.Width - 36) * frame.MicronsPerPixel).toFixed(1)}}x{{((blob.Height - 36) * frame.MicronsPerPixel).toFixed(1)}}μm</span>
+			<span class="label label-primary">Area: {{(blob.Area * frame.MicronsPerPixel).toFixed(1)}}μm</span>
+			<div class="image-container">
+				<img ng-src="{{getImageUrl(blob)}}" class="img-responsive" spriteimage>
+			</div>
+			<div class="caption">
+				<div class="row" ng-repeat="inf in blob.Inferences">
+					<div class="col-xs-12" style="padding-right: 0;">
+						<progress style="margin-bottom: 2px;">
+							<progressbar value="inf.Probability" type="info" max="1" style="white-space:nowrap;">
+								{{inf.CategoryDescription}}({{inf.Probability}})
+							</progressbar>
+						</progress>
+					</div>
+				</div>
+				<div class="row" ng-repeat="cat in blob.Categories">
+					<div class="col-xs-11" style="padding-right: 0;">
+						<progress style="margin-bottom: 2px;">
+							<progressbar value="cat.Probability" type="warning" max="1" style="white-space:nowrap;">
+								{{cat.CategoryDescription}}({{cat.Probability}})
+							</progressbar>
+						</progress>
+					</div>
+					<div class="col-xs-1" style="padding: 0;">
+						<button class="btn-secondary" style="padding: 0px;" ng-click="catSelect(blob, cat)">
+							<i class="fa fa-edit fa-fw margin-bottom"></i>
+						</button>
+					</div>
+				</div>
+				<input type="text" ng-model="otherEntry" class="form-control hover-visible" placeholder="Category" style="padding-top: 0px; padding-bottom: 0px;"
+					   typeahead-on-select="otherSelect(blob, $item)" typeahead="category.Description for category in categories | filter:$viewValue:startsWith"
+					   typeahead-loading="!categories" typeahead-no-results="noResults" typeahead-editable="false" typeahead-select-on-blur="true" />
+				<div ng-show="noResults">
+					<i class="glyphicon glyphicon-remove"></i> No Results Found
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

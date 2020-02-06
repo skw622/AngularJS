@@ -1,0 +1,82 @@
+﻿<div class="row site-body">
+    <div class="col-md-12">
+        <h2 class="sub-header">Devices</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Device ID</th>
+                        <th>Model</th>
+                        <th>Revision</th>
+                        <th>Username</th>
+                        <th>Since</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in deviceList">
+                        <td><a ui-sref="device.manage({ deviceId: item.Id })">{{item.Id}}</a></td>
+                        <td>{{item.ProductModelId}}</td>
+                        <td>{{item.Revision}}</td>
+                        <td>{{item.ProvisionedUserName}}</td>
+                        <td>{{item.ProvisionedSince}}</td>
+                        <td>{{item.ProvisionedLocation}}</td>
+                        <td>{{item.StatusCode}}</td>
+                        <td>{{item.StatusMessage}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-hide="deviceList" class="row"><div class="col-md-1 col-md-offset-4"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i></div></div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <h2 class="sub-header">Generate</h2>
+        <button type="button" class="btn btn-primary" ng-click="beginGenerate()" ng-show="!newDevice">Generate Device »</button>
+        <div class="row" ng-show="newDevice">
+            <div class="col-md-8">
+                <form class="form-horizontal" ng-submit="saveNewDevice()" focus-first-field>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="inputDeviceID">Device ID</label>
+                        <div class="col-xs-10">
+                            <input id="inputDeviceID" class="form-control" ng-model="newDevice.Id" placeholder="Device ID" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="inputModelID">ModelID</label>
+                        <div class="col-xs-10">
+                            <input id="inputModelID" class="form-control" ng-model="newDevice.ProductModelId" placeholder="Model ID" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="inputRevisionMajor">Revision Major</label>
+                        <div class="col-xs-10">
+                            <input id="inputRevisionMajor" class="form-control" ng-model="newDevice.RevisionMajor" placeholder="Revision Major" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="inputRevisionMinor">Revision Minor</label>
+                        <div class="col-xs-10">
+                            <input id="inputRevisionMinor" class="form-control" ng-model="newDevice.RevisionMinor" placeholder="Revision Minor" />
+                        </div>
+                    </div>
+                    <div class="col-xs-offset-2"><input class="btn btn-primary margin-top-5" type="submit" value="Generate" /></div>
+                </form>
+                <div class="row">
+                    <div class="row alert alert-danger margin-top-5" ng-show="message">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12" ng-show="password">
+        <div class="well">
+            <span><b>Device Password:</b> {{password}}</span>
+        </div>
+    </div>
+</div>
